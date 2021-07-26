@@ -4,9 +4,7 @@ export type fbUtils = {
 
     readonly device: string,
 
-    buffer: Buffer;
-
-    // flush(buffer: Buffer);
+    data: Buffer;
 };
 
 export function open(device: string): fbUtils;
