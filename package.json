@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "node-gyp clean configure build"
   },
-  "devDependencies": {
+  "dependencies": {
     "node-gyp": "^8.1.0",
     "bindings": "^1.5.0",
     "node-addon-api": "^4.0.0"
