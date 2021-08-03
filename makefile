@@ -1,7 +1,7 @@
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
 
-NODE=-I/usr/include/node -I$(mkfile_dir)node_modules/node-addon-api/
+NODE=-I/usr/include/node -I$(mkfile_dir)node_modules/node-addon-api/ -I$(shell node -p "require('node-addon-api').include")
 INCLUDE=$(NODE)
 LIBS=
 
