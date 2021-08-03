@@ -4,7 +4,12 @@
   "gypfile": true,
   "typings": "./index.d.ts",
   "main": "./index.js",
-  "devDependencies": {
+  "scripts": {
+  	"postinstall": "make fb.node"
+  }
+  "dependencies": {
+    "node-gyp": "^8.1.0",
+>>>>>>> 17e209862f9b85694a05ea5808fa2bffd09545f9
     "bindings": "^1.5.0",
     "node-addon-api": "^4.0.0"
   }

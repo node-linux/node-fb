@@ -1,5 +1,4 @@
 declare module 'fb' {
-
 	export interface Device {
 		readonly width: number;
 		readonly height: number;
