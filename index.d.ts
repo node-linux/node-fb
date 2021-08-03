@@ -1,14 +1,15 @@
-declare module 'nodefb' {
-    export type fbUtils = {
-        readonly width: number,
-        readonly height: number,
+declare module 'fb' {
 
-        readonly device: string,
+	export interface Device {
+		readonly width: number;
+		readonly height: number;
 
-        buffer: Buffer;
+		readonly device: string;
 
-        // flush(buffer: Buffer);
-    };
+		buffer: Buffer;
 
-    export function open(device: string): fbUtils;
+		close();
+	}
+	
+    export function open(device: string): Device;
 }

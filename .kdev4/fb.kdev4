@@ -1,8 +1,5 @@
 [Buildset]
-BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x0e\x00n\x00o\x00d\x00e\x00-\x00f\x00b)
-
-[ClangTidy]
-CheckSystemHeaders=true
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x04\x00f\x00b)
 
 [CustomDefinesAndIncludes][ProjectPath0]
 Path=.
@@ -16,8 +13,8 @@ parserArgumentsOpenCL=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunuse
 Name=Clang
 
 [CustomDefinesAndIncludes][ProjectPath0][Includes]
-1=/home/jcake/Code/node-fb/node_modules/node-addon-api/napi.h
-2=/home/jcake/Code/node-fb/node_modules/node-addon-api/napi-inl.h
+1=/home/jcake/Code/node-linux/cairo/node_modules/node-addon-api/
+2=/usr/include/node/
 
 [Filters]
 size=43
@@ -204,12 +201,12 @@ targets=1
 
 [Filters][41]
 inclusive=0
-pattern=/node_modules
+pattern=/build
 targets=2
 
 [Filters][42]
 inclusive=0
-pattern=/build
+pattern=/node_modules
 targets=2
 
 [Filters][5]

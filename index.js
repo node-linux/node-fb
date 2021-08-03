@@ -1,1 +1,1 @@
-module.exports = require("./build/Release/node-fb.node");
+module.exports = require("./fb.node");

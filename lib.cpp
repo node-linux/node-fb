@@ -44,20 +44,6 @@ Napi::Value open_fb(const Napi::CallbackInfo &info) {
 
     fb_utils.Set(Napi::String::New(env, "data"), data);
 
-
-//     There is the posibility of expanding this snippet to use this function somehow, but it's really not necessary.
-//     auto flush = [&](const Napi::CallbackInfo &info) -> Napi::Value {
-//         Napi::Env env = info.Env();
-//
-//         if (info.Length() != 1 || !info[0].IsBuffer()) {
-//             Napi::TypeError::New(env, "Invalid arguments. Expected (buffer)").ThrowAsJavaScriptException();
-//             return env.Null();
-//         }
-//
-//
-//     };
-//     fb_utils.Set(Napi::String::New(env, "flush"), Napi::Function::New(env, flush));
-
     return fb_utils;
 }
 
