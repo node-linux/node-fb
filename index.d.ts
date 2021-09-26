@@ -1,14 +1,16 @@
 declare module 'fb' {
-	export interface Device {
-		readonly width: number;
-		readonly height: number;
+    export interface Device {
+        readonly width: number;
+        readonly height: number;
 
-		readonly device: string;
+        readonly device: string;
 
-		buffer: Buffer;
+        buffer: Buffer;
 
-		close();
-	}
-	
+        close();
+    }
+
     export function open(device: string): Device;
 }
+
+export namespace fb {}
