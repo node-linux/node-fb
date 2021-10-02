@@ -70,7 +70,7 @@ Napi::Value open_file(const Napi::CallbackInfo &info) {
     size_t size = 4 * width * height;
     fallocate(fd, 0, 0, size);
     auto *buf = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    Napi::Buffer<char> data = Napi::Buffer<char>::New(env, (char *)buf, size);
+    Napi::Buffer<unsigned char> data = Napi::Buffer<unsigned char>::New(env, (unsigned char *)buf, size);
 
     auto file = Napi::Object::New(env);
 
@@ -87,11 +87,40 @@ Napi::Value open_file(const Napi::CallbackInfo &info) {
     return file;
 }
 
+Napi::Value mk_buffer(const Napi::CallbackInfo &info) {
+    Napi::Env env = info.Env();
+
+    if (info.Length() != 2 || !info[0].IsNumber() || !info[1].IsNumber()) {
+        Napi::TypeError::New(env, "Invalid arguments. Expected (number, number)").ThrowAsJavaScriptException();
+        return env.Null();
+    }
+
+    uint32_t width = info[0].As<Napi::Number>().Uint32Value();
+    uint32_t height = info[1].As<Napi::Number>().Uint32Value();
+
+    size_t size = 4 * width * height;
+
+    void* buf = malloc(size);
+    bzero(buf, size);
+
+    Napi::Buffer<char> data = Napi::Buffer<char>::New(env, (char *)buf, size);
+
+    auto file = Napi::Object::New(env);
+
+    file.Set("width", Napi::Number::New(env, width));
+    file.Set("height", Napi::Number::New(env, height));
+
+    file.Set("data", data);
+
+    return file;
+}
+
 Napi::Object init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "open_fb"), Napi::Function::New(env, open_fb));
     exports.Set(Napi::String::New(env, "open_file"), Napi::Function::New(env, open_file));
+    exports.Set(Napi::String::New(env, "mk_buffer"), Napi::Function::New(env, mk_buffer));
 
     return exports;
 }
 
-NODE_API_MODULE(nodefb, init);
+NODE_API_MODULE(fb, init);
